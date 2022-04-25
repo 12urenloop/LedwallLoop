@@ -1,6 +1,6 @@
 let slideInfo = {
-    item: 1,
-    total: 9,
+    item: 0,
+    total: 1,
 };
 let slideTimeout;
 
@@ -21,6 +21,15 @@ $(document).ready(function() {
     $("#right").click(function() {
         Slide();
     });
+
+    // disable background for livesite
+    let liveSiteFrame = document.getElementById("livesite-frame");
+    liveSiteFrame.addEventListener("load", () => {
+        if (liveSiteFrame && liveSiteFrame.contentWindow) {
+            liveSiteFrame.contentWindow.postMessage("activate-ledwall", "*");
+        }
+    });
+
     slideTimeout = setTimeout(function() {
         Slide();
     }, 10000);
@@ -60,4 +69,8 @@ function DoIt(target) {
             Slide();
         }, 5000);
     }
+}
+
+function cancelSlide() {
+    clearTimeout(slideTimeout);
 }
