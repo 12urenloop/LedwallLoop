@@ -2,6 +2,7 @@ let slideInfo = {
     item: 1,
     total: 9,
 };
+let slideTimeout;
 
 $(document).ready(function() {
     let WindowWidth = $(window).width();
@@ -20,7 +21,7 @@ $(document).ready(function() {
     $("#right").click(function() {
         Slide();
     });
-    setTimeout(function() {
+    slideTimeout = setTimeout(function() {
         Slide();
     }, 10000);
 });
@@ -49,12 +50,13 @@ function DoIt(target) {
 
     $("#count").html(slideInfo.item + 1);
 
+    clearTimeout(slideTimeout);
     if (slideInfo.item === 0 || slideInfo.item === 1) {
-        setTimeout(function() {
+        slideTimeout = setTimeout(function() {
             Slide();
         }, 10000);
     } else {
-        setTimeout(function() {
+        slideTimeout = setTimeout(function() {
             Slide();
         }, 5000);
     }
