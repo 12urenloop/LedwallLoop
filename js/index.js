@@ -16,7 +16,7 @@ $(document).ready(function() {
     $("#slides").css("width", SlidesWidth + "px");
     $("#slides li:nth-child(1)").addClass("alive");
     $("#left").click(function() {
-        Slide();
+        Slide(true);
     });
     $("#right").click(function() {
         Slide();
