@@ -1,61 +1,61 @@
-$.global = new Object();
+let slideInfo = {
+    item: 1,
+    total: 9,
+};
 
-$.global.item = 1;
-$.global.total = 0;
+$(document).ready(function() {
+    let WindowWidth = $(window).width();
+    let SlideCount = $("#slides li").length;
+    let SlidesWidth = SlideCount * WindowWidth;
 
-$(document).ready(function() 
-	{
-	
-	var WindowWidth = $(window).width();
-	var SlideCount = $('#slides li').length;
-	var SlidesWidth = SlideCount * WindowWidth;
-	
-   $.global.item = 0;
-    $.global.total = SlideCount; 
-    
-	$('.slide').css('width',WindowWidth+'px');
-	$('#slides').css('width',SlidesWidth+'px');
+    slideInfo.item = 0;
+    slideInfo.total = SlideCount;
 
-   $("#slides li:nth-child(1)").addClass('alive');
-    
-  $('#left').click(function() { Slide('back'); }); 
-  $('#right').click(function() { Slide('forward'); });
-  setTimeout(function() { Slide('forward'); }, 10000);
-
-
+    $(".slide").css("width", WindowWidth + "px");
+    $("#slides").css("width", SlidesWidth + "px");
+    $("#slides li:nth-child(1)").addClass("alive");
+    $("#left").click(function() {
+        Slide();
     });
+    $("#right").click(function() {
+        Slide();
+    });
+    setTimeout(function() {
+        Slide();
+    }, 10000);
+});
 
-function Slide(direction)
-	{
-   
-    if (direction === 'back') { var $target = $.global.item - 1; }
-    if (direction === 'forward') { var $target = $.global.item + 1; }
-    
-    if ($target === -1) { DoIt($.global.total-1); }
-    else if ($target === $.global.total) { DoIt(0); }
-    else { DoIt($target); }
+function Slide(isBackwards = false) {
+    let target = slideInfo.item + (isBackwards ? -1 : 1);
 
-    
-	}
+    if (target === -1) {
+        DoIt(slideInfo.total - 1);
+    } else if (target === slideInfo.total) {
+        DoIt(0);
+    } else {
+        DoIt(target);
+    }
+}
 
-function DoIt(target)
-  {
-   
-    var $windowwidth = $(window).width();
-	var $margin = $windowwidth * target; 
-    var $actualtarget = target+1;
-    
-    $("#slides li:nth-child("+$actualtarget+")").addClass('alive');
-    
-    $('#slides').css('transform','translate3d(-'+$margin+'px,0px,0px)');	
-    
-    $.global.item = target; 
-    
-  $('#count').html($.global.item+1);
+function DoIt(target) {
+    let windowwidth = $(window).width();
+    let margin = windowwidth * target;
+    let actualtarget = target + 1;
 
-  if ($.global.item === 0 || $.global.item === 1) {
-      setTimeout(function() { Slide('forward'); }, 10000);
-  } else {
-      setTimeout(function() { Slide('forward'); }, 5000);
-  }
-  }
+    $("#slides li:nth-child(" + actualtarget + ")").addClass("alive");
+    $("#slides").css("transform", "translate3d(-" + margin + "px,0px,0px)");
+
+    slideInfo.item = target;
+
+    $("#count").html(slideInfo.item + 1);
+
+    if (slideInfo.item === 0 || slideInfo.item === 1) {
+        setTimeout(function() {
+            Slide();
+        }, 10000);
+    } else {
+        setTimeout(function() {
+            Slide();
+        }, 5000);
+    }
+}
