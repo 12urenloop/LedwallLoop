@@ -100,7 +100,7 @@ function scheduleSpecialRound() {
     let roundImg = specialRoundElem.getElementsByTagName("img")[0];
     roundImg.src =
         specialRounds.basePath +
-        specialRounds.files[specialRounds.files.length - fileIdx];
+        specialRounds.files[specialRounds.files.length - 1 - fileIdx];
     console.log(`scheduling next round in ${nextRound}s`);
     setTimeout(() => {
         scheduleSpecialRound();
