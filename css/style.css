@@ -12,9 +12,10 @@ body::-webkit-scrollbar { display: none; }
 }
 
 .iframe-container > iframe {
-    width: 80%;
-    height: 80%;
+    width: 65%;
+    height: 65%;
     border: none;
+    transform: scale(1.5);
 }
 
 .sponsor-img {
