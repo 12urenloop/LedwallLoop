@@ -12,10 +12,10 @@ body::-webkit-scrollbar { display: none; }
 }
 
 .iframe-container > iframe {
-    width: 65%;
-    height: 65%;
+    width: 50%;
+    height: 50%;
     border: none;
-    transform: scale(1.5);
+    transform: scale(2);
 }
 
 .sponsor-img {
@@ -31,6 +31,9 @@ body::-webkit-scrollbar { display: none; }
   overflow:hidden;
   top:0px;
   left:0px;
+  background-image: url(http://stuckincustoms.smugmug.com/Portfolio/i-JSxf5Nm/0/X3/Burning-Man-Day-6%20%28202%20of%201606%29-X3.jpg);
+  background-size: cover;
+  background-position: 50% 50%;
   }
 
 #slides
@@ -42,7 +45,7 @@ body::-webkit-scrollbar { display: none; }
   
   -webkit-transform: translate3d(0px,0px,0px);
   transform: translate3d(0px,0px,0px);
-    
+  
   transition: all 0.66s ease; -webkit-transition: all 0.66s ease; 
   
   }
@@ -56,11 +59,8 @@ body::-webkit-scrollbar { display: none; }
   padding: 0;
   width: 500px;
   height: 100%;
-  background: #ccc;
   text-align: center;
   line-height: 300px; 
-  background-size: cover; 
-  background-position:50% 50%;
   color:#fff;
   -webkit-transform: translate3d(0px,0px,0px);
   visibility:hidden;
