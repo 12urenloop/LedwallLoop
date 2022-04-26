@@ -25,9 +25,16 @@ $(document).ready(function() {
     // disable background for livesite
     let liveSiteFrame = document.getElementById("livesite-frame");
     liveSiteFrame.addEventListener("load", () => {
-        if (liveSiteFrame && liveSiteFrame.contentWindow) {
-            liveSiteFrame.contentWindow.postMessage("activate-ledwall", "*");
-        }
+        let tries = 0;
+        let tryInterval = setInterval(() => {
+            if (tries >= 20) {
+                clearInterval(tryInterval);
+            }
+            if (liveSiteFrame && liveSiteFrame.contentWindow) {
+                liveSiteFrame.contentWindow.postMessage("activate-ledwall", "*");
+            }
+            tries++;
+        }, 1000);
     });
 
     scheduleSpecialRound();
