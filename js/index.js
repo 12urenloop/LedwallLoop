@@ -15,12 +15,6 @@ $(document).ready(function() {
     $(".slide").css("width", WindowWidth + "px");
     $("#slides").css("width", SlidesWidth + "px");
     $("#slides li:nth-child(1)").addClass("alive");
-    $("#left").click(function() {
-        Slide(true);
-    });
-    $("#right").click(function() {
-        Slide();
-    });
 
     // disable background for livesite
     let liveSiteFrame = document.getElementById("livesite-frame");
