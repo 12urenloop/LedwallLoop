@@ -7,6 +7,9 @@ body::-webkit-scrollbar { display: none; }
 .img-container,.iframe-container {
   height: 100%;
   display: flex;
+  width: 70%;
+  transform: translateX(-50%);
+    margin-left: 50%;
   justify-content: center;
   align-items: center;
 }
