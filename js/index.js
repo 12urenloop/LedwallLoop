@@ -79,7 +79,7 @@ function scheduleSpecialRound() {
     const curTime = Date.now() / 1000;
     const diffWithEnd = specialRounds.end - curTime;
     const fileNames = Object.values(specialRounds.files);
-    if (diffWithEnd < specialRounds.interval) {
+    if (curTime > specialRounds.end + specialRounds.interval) {
         // Hide slide, no more rounds
         specialRoundElem.style.display = "none";
         return;
