@@ -88,11 +88,11 @@ function scheduleSpecialRound() {
         fileNames.length - 1,
         Math.ceil(diffWithEnd / specialRounds.interval)
     );
+    const nextRound = Math.ceil(
+        specialRounds.end - specialRounds.interval * (fileIdx - 1) - curTime
+    );
+
     fileIdx = fileNames.length - 1 - fileIdx;
-    const nextRound =
-        Math.ceil(
-            specialRounds.end - specialRounds.interval * (fileIdx - 1) - curTime
-        ) / 10;
     console.log(fileIdx, nextRound, new Date((curTime + nextRound) * 1000));
     let roundImg = specialRoundElem.getElementsByTagName("img")[0];
     let roundTxt = document.getElementById("special-round-replace");
