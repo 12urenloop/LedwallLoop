@@ -78,23 +78,33 @@ function scheduleSpecialRound() {
     let specialRoundElem = document.getElementById("special-round-slide");
     const curTime = Date.now() / 1000;
     const diffWithEnd = specialRounds.end - curTime;
-    if (diffWithEnd < 0) {
+    const fileNames = Object.values(specialRounds.files);
+    if (diffWithEnd < specialRounds.interval) {
         // Hide slide, no more rounds
         specialRoundElem.style.display = "none";
         return;
     }
     let fileIdx = Math.min(
-        specialRounds.files.length - 1,
+        fileNames.length - 1,
         Math.ceil(diffWithEnd / specialRounds.interval)
     );
+    fileIdx = fileNames.length - 1 - fileIdx;
     const nextRound = Math.ceil(
         specialRounds.end - specialRounds.interval * (fileIdx - 1) - curTime
     );
     // console.log(fileIdx, nextRound, new Date((curTime + nextRound) * 1000));
     let roundImg = specialRoundElem.getElementsByTagName("img")[0];
-    roundImg.src =
-        specialRounds.basePath +
-        specialRounds.files[specialRounds.files.length - 1 - fileIdx];
+    let roundTxt = document.getElementById("special-round-replace");
+    roundImg.style.display = "block";
+    roundTxt.style.display = "none";
+    roundTxt.innerText = "";
+    roundImg.onerror = () => {
+        console.log("failed to load image");
+        roundImg.style.display = "none";
+        roundTxt.style.display = "block";
+        roundTxt.innerText = Object.keys(specialRounds.files)[fileIdx];
+    };
+    roundImg.src = specialRounds.basePath + fileNames[fileIdx];
     console.log(`scheduling next round in ${nextRound}s`);
     setTimeout(() => {
         scheduleSpecialRound();

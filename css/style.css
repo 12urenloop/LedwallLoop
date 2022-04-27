@@ -104,3 +104,10 @@ body::-webkit-scrollbar { display: none; }
   color:#eaeaea; 
   font-family: 'Courier New', Courier, monospace;  
   }
+
+#special-round-replace {
+    font-size: 3rem;
+    color: black;
+    font-family: Arial;
+    line-height: normal;
+}
