@@ -4,14 +4,22 @@ body::-webkit-scrollbar { display: none; }
   height: 100%;
 }
 
-.img-container,.iframe-container {
+.img-container, .iframe-container {
   height: 100%;
   display: flex;
   width: 70%;
   transform: translateX(-50%);
-    margin-left: 50%;
+  margin-left: 50%;
   justify-content: center;
   align-items: center;
+}
+
+.img-container {
+    width: 70%;
+}
+
+.iframe-container {
+    width: 80%;
 }
 
 .iframe-container > iframe {
